@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Store Admin | CRUD Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-mark">S</span>
+          <div><strong>StoreDesk</strong><small>ADMIN WORKSPACE</small></div>
+        </div>
+        <p class="nav-label">WORKSPACE</p>
+        <button class="nav-item active" data-resource="products">
+          <span>▦</span> Products</button
+        ><button class="nav-item" data-resource="categories">
+          <span>◫</span> Categories</button
+        ><button class="nav-item" data-resource="users">
+          <span>♙</span> Users
+        </button>
+        <div class="sidebar-foot">
+          <span class="status-dot"></span> API workspace
+          <small>PHP · MySQL</small>
+        </div>
+      </aside>
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">MANAGEMENT / <span id="crumb">PRODUCTS</span></p>
+            <h1 id="pageTitle">Products</h1>
+          </div>
+          <div class="top-actions">
+            <span class="api-pill"><i></i> API connected on demand</span
+            ><button id="refreshBtn" class="btn btn-light">↻ Refresh</button>
+          </div>
+        </header>
+        <section class="welcome">
+          <div>
+            <p class="eyebrow">YOUR STORE AT A GLANCE</p>
+            <h2>Keep your workspace in order.</h2>
+            <p>Create, review, update and remove records from one place.</p>
+          </div>
+          <div class="welcome-art" aria-hidden="true">
+            <span>✳</span><span>▧</span><span>◌</span>
+          </div>
+        </section>
+        <section class="stats">
+          <article class="stat-card">
+            <span class="stat-icon purple">▦</span>
+            <div>
+              <p id="countLabel">Total products</p>
+              <strong id="totalCount">—</strong>
+            </div>
+            <span class="stat-note">Current list</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon green">✓</span>
+            <div>
+              <p>API status</p>
+              <strong id="apiStatus">Ready</strong>
+            </div>
+            <span class="stat-note">PHP endpoints</span>
+          </article>
+        </section>
+        <section class="content-card">
+          <div class="card-head">
+            <div>
+              <h3 id="listTitle">Product directory</h3>
+              <p id="listSubtitle">Review and manage your product records.</p>
+            </div>
+            <button id="createBtn" class="btn btn-primary">
+              ＋ Add product
+            </button>
+          </div>
+          <div class="toolbar">
+            <label class="search"
+              ><span>⌕</span
+              ><input
+                id="searchInput"
+                type="search"
+                placeholder="Search records..." /></label
+            ><span id="resultCount" class="result-count"></span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead id="tableHead"></thead>
+              <tbody id="tableBody">
+                <tr>
+                  <td class="empty" colspan="8">Loading records…</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-footer">
+            <span id="footerText">Loading…</span
+            ><span class="footer-dot"></span>
+          </div>
+        </section>
+        <footer>
+          StoreDesk <span>•</span> Simple CRUD management for your local PHP API
+        </footer>
+      </main>
+    </div>
+    <div
+      id="modal"
+      class="modal hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
+      <div class="modal-backdrop" data-close="true"></div>
+      <section class="modal-panel">
+        <div class="modal-head">
+          <div>
+            <p class="eyebrow" id="modalEyebrow">RECORD DETAILS</p>
+            <h2 id="modalTitle">Add product</h2>
+          </div>
+          <button id="closeModal" class="icon-btn" aria-label="Close">×</button>
+        </div>
+        <form id="recordForm">
+          <div id="formFields" class="form-grid"></div>
+          <p id="formError" class="form-error" role="alert"></p>
+          <div class="modal-actions">
+            <button type="button" id="cancelBtn" class="btn btn-light">
+              Cancel</button
+            ><button type="submit" id="saveBtn" class="btn btn-primary">
+              Save record
+            </button>
+          </div>
+        </form>
+      </section>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="js/app.js"></script>
+  </body>
+</html>

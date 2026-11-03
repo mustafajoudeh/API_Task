@@ -1,0 +1,3 @@
+<?php
+declare(strict_types=1);require_once dirname(__DIR__).'/bootstrap.php';$m=$_SERVER['REQUEST_METHOD']??'GET';
+try{$model=ModelFactory::users();switch($m){case 'GET':apiResponse(200,['success'=>true,'data'=>$model->GetAllUsers()]);case 'POST':$d=requestData();$id=$model->CreateUser((string)($d['fullName']??''),(string)($d['username']??''),(string)($d['email']??''),(string)($d['password']??''));apiResponse(201,['success'=>true,'message'=>'User created.','data'=>$model->GetUser($id)]);default:header('Allow: GET, POST');apiResponse(405,['success'=>false,'message'=>'Method not allowed.']);}}catch(Throwable $e){handleError($e);}
